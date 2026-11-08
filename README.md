@@ -22,6 +22,8 @@ Cada rutina trae una guía de 3 pasos.
 - **💪 Subir velocidad solo:** +4 BPM cada 4 compases, como en el gym.
 - **Cronómetro** de práctica.
 - **Diagramas de acordes** reales (abiertos y con cejilla), con la raíz marcada en naranja.
+- **Esquema en números romanos** (I–V–vi–IV) debajo de cada acorde: el mismo patrón sirve en cualquier tono.
+- **Formas de acordes optimizadas:** elige 🟢 Fáciles (abiertos), 🌊 Fluidas (triadas en 3 cuerdas), Cejillas (misma zona) o Clásicas. La app calcula la combinación en la que la mano se mueve menos durante toda la vuelta, marca en **verde los dedos que se quedan fijos** y te dice cómo hacer cada cambio.
 - **Escala sugerida automática** (ej. en Do mayor → pentatónica menor de La).
 - **Glosario** integrado con botones **?**.
 - Nombres en **C D E** o **Do Re Mi**.
