@@ -1,23 +1,31 @@
 # 🎸 Solo Lab
 
-Gimnasio de improvisación para guitarra y bajo, en el navegador. Eliges tono y progresión, le das play a la pista y el diapasón te ilumina las notas de la escala para que saques tus solos y licks.
+**Tu gimnasio musical para guitarra y bajo, en el navegador.** Escoges qué entrenar, le das play y sigues lo que se ilumina. Hecho para principiantes: cada palabra técnica tiene un botón **?** que la explica en sencillo.
 
-## Qué hace (v2)
+## Las 4 rutinas
 
-- **Tono y progresión:** 12 tonos, modo mayor o menor, progresiones clásicas (pop, rock, jazz, blues de 12 compases, andaluza…).
-- **Escala sugerida automática:** por ejemplo, en Do mayor te pone la pentatónica menor de La (su relativa).
-- **Pista de acompañamiento:** batería, acordes y bajo generados en vivo. Estilos: rock, balada, funk y shuffle. Tempo de 50 a 170 BPM.
-- **Metrónomo** independiente.
-- **Diapasón interactivo (15 trastes):** escalas pentatónica menor/mayor, blues, mayor, menor natural, dórica y mixolidia. Vista por notas o por grados, y por posiciones (1 a 5).
-- **Notas del acorde que suena** resaltadas en amarillo mientras corre la pista.
-- **Mi camino:** marca las notas de tu lick, esconde lo demás y tócalo.
-- **Chord Pad (v2):** una tecla = un acorde completo, inspirado en los sintes de acordes.
-  - *Modo Tono:* cada tecla da el acorde correcto del tono (en Do mayor: C, Dm, Em, F, G, Am, Bdim), como triada, séptima, novena, add9, sus2 o sus4, con su número romano.
-  - *Modo Libre:* eliges el tipo (mayor, menor, 7, maj7, m7, sus, add9, m9, 6, dim, aug) y tocas cualquier nota.
-  - Toque de acorde, rasgueo o arpegio; inversiones; octava; bajo opcional; 3 sonidos (pad psicodélico, piano eléctrico, pluck).
-  - **Grabar progresión** y usarla como pista de fondo.
-  - Diapasón que muestra dónde están las notas del acorde.
-  - En compu: teclas A W S E D F T G Y H U J K.
+| Rutina | Nivel | Qué entrenas |
+|---|---|---|
+| 🥁 **Ritmo** | Básico | Tocar parejo y a tiempo. Patrones de rasgueo con flechas (↓ ↑) que se iluminan, o patrones de bajo (raíz, quinta, octava). |
+| 🎸 **Acompañar** | Básico | Tocar los acordes de una canción con la banda. Diagrama grande del acorde actual, el que sigue y cuántos tiempos faltan para cambiar. |
+| 🔥 **Solo** | Intermedio | Improvisar. El mástil ilumina la escala que combina, la raíz y las notas del acorde que suena. Marca tu propio “camino” para armar licks. |
+| 🎛️ **Crear bases** | Libre | Chord Pad: una tecla = un acorde que ya combina con el tono. Graba tu progresión y úsala como pista. |
+
+Cada rutina trae una guía de 3 pasos.
+
+## Funciones
+
+- **Guitarra o bajo:** cambia el mástil, los patrones y las guías.
+- **Tu pista:** tono, mayor o menor, progresiones clásicas (pop, rock, años 50, jazz, blues de 12, andaluza…), estilo (rock, balada, funk, shuffle, psicodélico) y qué instrumentos suenan.
+- **Velocidad:** botones − / +, atajos Lento · Medio · Rápido.
+- **Cuenta de entrada** 1-2-3-4 antes de arrancar.
+- **💪 Subir velocidad solo:** +4 BPM cada 4 compases, como en el gym.
+- **Cronómetro** de práctica.
+- **Diagramas de acordes** reales (abiertos y con cejilla), con la raíz marcada en naranja.
+- **Escala sugerida automática** (ej. en Do mayor → pentatónica menor de La).
+- **Glosario** integrado con botones **?**.
+- Nombres en **C D E** o **Do Re Mi**.
+- Atajos en compu: **barra espaciadora** = play/stop; en Crear bases, teclas **A W S E D F T G Y H U J K**.
 
 ## Cómo usarlo
 
@@ -25,23 +33,26 @@ Abre `index.html` en el navegador (Chrome, Safari o Edge). Necesita internet par
 
 > En iPhone, quita el modo silencio para escuchar el audio.
 
-Atajo: **barra espaciadora** = play / stop.
-
 ## Publicarlo gratis con GitHub Pages
 
-1. Crea un repositorio nuevo en GitHub (por ejemplo `solo-lab`).
-2. Sube `index.html` y este `README.md`.
-3. Ve a **Settings → Pages**, en *Source* elige la rama `main` y la carpeta `/ (root)`, y guarda.
+1. Crea un repositorio nuevo en GitHub (por ejemplo `solo-lab`), en **Public**.
+2. Sube `index.html` y este `README.md` (**uploading an existing file**).
+3. Ve a **Settings → Pages**, en *Source* elige **Deploy from a branch**, rama `main`, carpeta `/ (root)`, y guarda.
 4. En un par de minutos queda en `https://TU-USUARIO.github.io/solo-lab/`.
 
-## Ruta (siguientes versiones)
+Para actualizar: **Add file → Upload files** y sube el nuevo `index.html`.
 
-- [ ] Biblioteca de acordes con diagramas y variaciones (abiertos, cejilla, triadas)
-- [x] Constructor de progresiones propias (Chord Pad)
-- [ ] Modo bajo (diapasón de 4 cuerdas + líneas de bajo)
+## Ruta
+
+- [x] Escalas, pista y metrónomo
+- [x] Chord Pad y grabar progresiones
+- [x] Rutinas de gimnasio (Ritmo, Acompañar, Solo, Crear)
+- [x] Diagramas de acordes y modo bajo
+- [ ] Guardar tus progresiones y licks favoritos
+- [ ] Afinador
 - [ ] Afinaciones alternativas (Drop D, medio tono abajo)
-- [ ] Guardar tus caminos/licks favoritos
+- [ ] Retos diarios y registro de progreso
 
 ## Tecnología
 
-HTML + CSS + JavaScript en un solo archivo. Audio con [Tone.js](https://tonejs.github.io/).
+HTML + CSS + JavaScript en un solo archivo. Audio con [Tone.js](https://tonejs.github.io/). Tipografía Permanent Marker y DM Sans (Google Fonts).
