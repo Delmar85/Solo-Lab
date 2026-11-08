@@ -1814,7 +1814,7 @@ function segBind(id,attr,cb){$(id).addEventListener('click',e=>{const b=e.target
 function setSeg(id,attr,val){$(id).querySelectorAll('button').forEach(x=>x.classList.toggle('on',x.dataset[attr]===val));}
 function onKeyOrMode(){fillProgSel();renderChips();applySuggestion();updateNow();renderView();}
 
-$('tiles').addEventListener('click',e=>{const t=e.target.closest('.tile');if(t)setView(t.dataset.v);});
+document.addEventListener('click',e=>{const t=e.target.closest('.tile');if(t)setView(t.dataset.v);});
 segBind('instSeg','i',v=>{state.inst=v;document.body.dataset.inst=v;state.path.clear();state.pattern=0;
   $('instSeg').querySelector('[data-i="guitarra"]').textContent=v==='guitarra'?'🎸 Guitarra':'Guitarra';
   $('instSeg').querySelector('[data-i="bajo"]').textContent=v==='bajo'?'🎸 Bajo':'Bajo';
