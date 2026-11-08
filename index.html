@@ -185,6 +185,38 @@ input[type=range]{width:100%;accent-color:var(--coral)}
 .mapi .rn{display:block;font:700 10px 'DM Sans';color:var(--muted);letter-spacing:1px}
 .mapi .tr{display:block;font:600 10.5px 'DM Sans';color:var(--mint);max-width:84px;margin:2px auto 0;line-height:1.2}
 
+/* RITMO DEL SOLO */
+.lab{margin-top:16px;display:grid;gap:10px}
+.lbar{display:grid;gap:3px}
+.lc{height:60px;background:var(--panel2);border:1px solid var(--line);border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:7px 0 4px;transition:background .06s;min-width:0}
+.lbar .lc.beat:not(:first-child){margin-left:5px}
+.lc.beat{border-color:#3A3F4D}
+.lc .nt{width:16px;height:16px;border-radius:50%}
+.lc.hit .nt{background:var(--coral);box-shadow:0 0 10px rgba(255,122,69,.5)}
+.lc.hit .nt.lbl{width:auto;height:auto;background:none;box-shadow:none;font:400 13px 'Permanent Marker';color:var(--coral);line-height:16px}
+.lc.sub .nt{width:6px;height:6px;background:#3E4250;margin-top:5px}
+.lc .ct{font:700 10px 'DM Sans';color:var(--muted)}
+.lc.beat .ct{color:var(--ink);font-size:12px}
+.lc.breath{background:repeating-linear-gradient(-45deg,var(--panel2) 0 6px,rgba(160,140,255,.12) 6px 12px)}
+.lc.now{background:#343948;border-color:var(--mint)}
+.lc.sub.now .nt{background:var(--mint)}
+.lc.hit.now{background:var(--spray);border-color:transparent}
+.lc.hit.now .nt{background:#15171C;box-shadow:none}
+.lc.hit.now .nt.lbl{background:none;color:#15171C}
+.lab.big .lc{height:96px;border-radius:14px;padding:12px 0 8px}
+.lab.big .lc .nt{width:26px;height:26px}
+.lab.big .lc.hit .nt.lbl{font-size:24px;line-height:26px}
+.lab.big .lc .ct{font-size:14px}
+.lab.big .lc.sub .nt{width:10px;height:10px}
+.cx{flex:1 1 240px}
+.cx b{font:400 18px 'Permanent Marker';color:var(--amber);min-width:76px}
+.vol{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.steps5{margin:0 0 6px;padding:0;list-style:none;display:grid;gap:6px;counter-reset:s}
+.steps5 li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#D8D3CB}
+.steps5 li::before{content:counter(s);flex:0 0 24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--violet);color:#15171C;font:400 13px 'Permanent Marker'}
+.keynow{font:400 22px 'Permanent Marker';color:var(--mint)}
+@media (max-width:560px){.vol{grid-template-columns:1fr}.lc{height:54px;border-radius:7px}.lbar{gap:2px}.lbar .lc.beat:not(:first-child){margin-left:3px}}
+
 /* FRETBOARD */
 .board-wrap{margin-top:14px;overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:16px;border:1px solid var(--line)}
 .board-wrap svg{display:block}
@@ -276,7 +308,7 @@ footer{text-align:center;color:var(--muted);font:400 14px 'Permanent Marker';pad
 <header class="hero">
   <div class="wrap" style="position:relative">
     <div class="topbar">
-      <span class="tape or">v5 · gimnasio</span>
+      <span class="tape or">v6 · gimnasio</span>
       <div class="top-ctrls">
         <div class="seg light" id="instSeg"><button data-i="guitarra" class="on">🎸 Guitarra</button><button data-i="bajo">Bajo</button></div>
         <div class="seg light" id="namesToggle"><button data-n="en" class="on">C D E</button><button data-n="es">Do Re Mi</button></div>
@@ -371,6 +403,48 @@ footer{text-align:center;color:var(--muted);font:400 14px 'Permanent Marker';pad
   <!-- ============ SOLO ============ -->
   <section class="panel" data-panel="solo" hidden>
     <div class="slot-track"></div>
+    <div class="card" id="labCard">
+      <div class="card-head"><div class="badge">⏱️</div><h2>Ritmo del solo<small>Dónde caen tus notas: la mitad de un buen solo</small></h2></div>
+      <ol class="steps5">
+        <li><span>Escucha la rejilla: pon <b>Corcheas</b> y luego <b>Semicorcheas</b>, y cuenta en voz alta.</span></li>
+        <li><span>Activa el <b>Generador</b> en Simple. El ritmo se repite con la banda.</span></li>
+        <li><span>Aplaude el ritmo, luego aplaude y cuenta al mismo tiempo, sin ver la pantalla.</span></li>
+        <li><span>Tócalo en la guitarra en <b>una sola nota</b> (guía “Con raíz”). Luego muévelo por la escala sin cambiar el ritmo (guía “Con notas”).</span></li>
+        <li><span>Cada frase termina con un <b>silencio</b> (rayitas): respétalo. Cuando lo domines, pide otro ritmo o súbele la complejidad.</span></li>
+      </ol>
+      <div class="row" style="margin-top:12px">
+        <div class="field"><span class="lbl">Rejilla <button class="q" data-g="subdiv">?</button></span>
+          <div class="seg" id="labSeg"><button data-l="off">Apagada</button><button data-l="grid8">Corcheas</button><button data-l="grid16">Semicorcheas</button><button data-l="gen" class="on">🎲 Generador</button></div></div>
+      </div>
+      <div class="row" id="genCtrls" style="margin-top:14px">
+        <div class="field cx"><span class="lbl">Complejidad</span>
+          <div style="display:flex;align-items:center;gap:12px;width:100%"><input type="range" id="cxRange" min="1" max="5" value="1"><b id="cxVal">Simple</b></div></div>
+        <button class="btn" id="newRhythm">🎲 Nuevo ritmo</button>
+        <label class="tog" id="bars2Tog"><input type="checkbox" id="bars2Chk">Frases de 2 compases</label>
+      </div>
+      <div class="row" style="margin-top:14px">
+        <div class="field"><span class="lbl">Guía que suena</span>
+          <div class="seg" id="guideSeg"><button data-g2="basic">Solo ritmo</button><button data-g2="root" class="on">Con raíz</button><button data-g2="notes">Con notas</button></div></div>
+        <label class="tog" id="bigTog"><input type="checkbox" id="bigChk">🔍 Grande</label>
+      </div>
+      <div class="lab" id="labGrid"></div>
+      <p class="hint" id="labHint"></p>
+
+      <h3 class="sub">Todas las tonalidades <button class="q" data-g="circulo">?</button></h3>
+      <div class="row">
+        <div class="field"><span class="lbl">Tono actual</span><span class="keynow" id="keyNow"></span></div>
+        <button class="btn ghost sm" id="randKey">🎲 Tono al azar</button>
+        <label class="tog" id="rotTog"><input type="checkbox" id="rotChk">🔄 Cambiar de tono cada 4 compases</label>
+      </div>
+      <p class="hint">Con “Cambiar de tono” la banda recorre los 12 tonos por el círculo de quintas (C → G → D → A…) y el mástil se mueve solo. El mismo ritmo, en todos los tonos.</p>
+
+      <h3 class="sub">Volumen</h3>
+      <div class="vol">
+        <div class="field"><span class="lbl">Banda</span><input type="range" id="volBand" min="0" max="100" value="80"></div>
+        <div class="field"><span class="lbl">Click</span><input type="range" id="volClick" min="0" max="100" value="80"></div>
+        <div class="field"><span class="lbl">Guía del ritmo</span><input type="range" id="volGuide" min="0" max="100" value="85"></div>
+      </div>
+    </div>
     <div class="card">
       <div class="card-head"><div class="badge">🔥</div><h2>El mástil<small>Las notas que combinan con la canción</small></h2></div>
       <div class="suggest">
@@ -636,6 +710,8 @@ const GLOSS={
   grados:['Grados','El número de cada nota dentro de la escala: 1 es la raíz, b3 la tercera menor, 5 la quinta… Sirve para aprender patrones que funcionan en cualquier tono.'],
   posicion:['Posición','Una “caja” de 4 o 5 trastes donde tocas la escala sin mover la mano. Aprende una a la vez, empezando por la Posición 1.'],
   inversion:['Inversión','El mismo acorde pero con otra de sus notas abajo. Suena más suave al pasar de un acorde a otro.'],
+  subdiv:['Corcheas y semicorcheas','Dividir cada tiempo en partes iguales. Corcheas: 2 por tiempo, se cuenta “1 y 2 y”. Semicorcheas: 4 por tiempo, se cuenta “1 e y a”. Los solos buenos viven en esas divisiones, no solo en los números.'],
+  circulo:['Círculo de quintas','El orden en que los tonos se suceden de forma natural: C → G → D → A → E → B → F# → Db → Ab → Eb → Bb → F. Practicar así te hace dominar el mástil en los 12 tonos.'],
   romanos:['El esquema (números romanos)','Cada acorde se nombra por su lugar en el tono: I es el acorde “casa”, IV y V son sus vecinos fuertes, vi es el menor más usado. Mayúscula = mayor, minúscula = menor, ° = disminuido. Si aprendes I–V–vi–IV, ya sabes tocar esa progresión en cualquier tono.'],
   voicing:['Formas de acordes','El mismo acorde se puede tocar en muchos lugares del mástil. Fáciles: abiertos, ideales para empezar. Fluidas: triadas en solo 3 cuerdas, elegidas para que la mano casi no se mueva. Cejillas: todas en la misma zona, solo deslizas. Los puntos verdes son dedos que se quedan fijos en el cambio.'],
   triada:['Triada','El acorde en su versión más pura: solo 3 notas (raíz, tercera y quinta) en 3 cuerdas. Es ligera, fácil de mover y suena muy limpia.'],
@@ -649,7 +725,7 @@ const VIEWS={
     g:{guitarra:['Abajo en “Tu pista” elige tono y progresión (o usa la que creaste).','Mira el acorde grande. A la derecha ves cuál sigue y cuántos tiempos faltan para cambiar.','Dale play y rasguea. Cuando el contador llegue a 1, prepárate para cambiar. Empieza a 60–70 BPM.'],
        bajo:['Abajo en “Tu pista” elige tono y progresión.','El mástil te muestra la raíz (naranja) del acorde que suena y sus notas.','Dale play y toca la raíz en cada tiempo. Cuando te sientas cómodo, agrega la 5.']}},
   solo:{t:'Rutina de solo',d:'Improvisar es platicar con la guitarra. La app te dice qué notas usar.',
-    g:{guitarra:['Dale play: la banda toca y el mástil te ilumina las notas que combinan.','Empieza en la Posición 1. Toca 2 o 3 notas y deja silencio; las frases cortas suenan mejor.','Termina tus frases en una nota naranja (la raíz) o en una con círculo amarillo.'],
+    g:{guitarra:['Dale play: la banda toca y el mástil te ilumina las notas que combinan.','En “Ritmo del solo” genera un ritmo y tócalo: primero en una nota, luego por la escala. Las notas que suenan brillan en el mástil.','Termina tus frases en una nota naranja (la raíz) o en una con círculo amarillo.'],
        bajo:['Dale play: la banda toca y el mástil te ilumina las notas que combinan.','Empieza en la Posición 1 y crea frases cortas de 3 o 4 notas.','Termina en la raíz (naranja) o en notas con círculo amarillo.']}},
   crear:{t:'Crear bases',d:'Arma tus propias progresiones tocando una tecla por acorde, y luego practica encima.',
     g:{guitarra:['Toca las teclas: cada una es un acorde que ya combina con el tono. Arriba eliges el “color” del acorde.','Dale Grabar y toca de 2 a 8 acordes en el orden que te guste.','“Usar como pista” y practícala en Acompañar o Solo.'],
@@ -666,7 +742,7 @@ const DEFAULTS={
 const state={view:'ritmo',inst:'guitarra',names:'en',key:0,mode:'mayor',prog:0,custom:[],scaleRoot:9,scale:'pmen',pos:'1',labels:'notes',
   chordTones:true,pathMode:false,onlyPath:false,path:new Set(),playing:false,curChord:null,
   bpm:80,style:'rock',barsPer:2,drums:false,chords:false,bass:false,metro:true,countIn:true,autoUp:false,
-  pattern:0,hear:true,one:true,secs:0,voicing:'facil',
+  pattern:0,hear:true,one:true,secs:0,voicing:'facil',lab:'gen',cx:1,labBars2:false,guide:'root',big:false,rotate:false,rhythm:null,vol:{band:80,click:80,guide:85},
   padMode:'tono',padType:0,padColor:0,feel:'chord',sound:'pad',inv:0,oct:3,padBass:true,padChord:null,rec:[],recording:false};
 
 const $=id=>document.getElementById(id);
@@ -943,7 +1019,7 @@ function setView(v,scroll=true){
 function renderView(){
   if(state.view==='ritmo') renderRitmo();
   if(state.view==='acompanar') renderAcc();
-  if(state.view==='solo'){suggestionText();drawBoard();}
+  if(state.view==='solo'){suggestionText();drawBoard();renderLab();}
   if(state.view==='crear'){renderPadTypes();renderKeys();renderPadDisplay();renderRec();drawPadBoard();}
 }
 /* ritmo */
@@ -1005,6 +1081,88 @@ function applySuggestion(){
   const s=suggestion(); suggestionText();
   state.scaleRoot=s.root; state.scale=s.scale; state.path.clear();
   $('rootSel').value=s.root; $('scaleSel').value=s.scale; drawBoard();
+  if(state.view==='solo') renderLab();
+}
+
+/* ===================== RITMO DEL SOLO ===================== */
+const COUNT8=['1','y','2','y','3','y','4','y'], COUNT16=['1','e','y','a','2','e','y','a','3','e','y','a','4','e','y','a'];
+const CXN=['Simple','Fácil','Medio','Difícil','Reto'];
+function genRhythm(){
+  const c=state.cx, res=c>=3?16:8, bars=state.labBars2?2:1, N=res*bars, per=res/4;
+  const wOff=[.15,.55,.7,.8,.85][c-1], wE=[0,0,.25,.5,.65][c-1];
+  const target=Math.max(2,Math.round([3,4,5,6,8][c-1]*bars*(.85+Math.random()*.3)));
+  const restFrom=N-per;
+  const w=[...Array(N).keys()].map(i=>{if(i>=restFrom)return 0;const q=i%per;if(q===0)return 1;if(res===8)return wOff;return q===2?wOff:wE;});
+  if(c<=2) w[0]=99;
+  const hits=new Set(); let guard=0;
+  while(hits.size<target&&guard++<800){
+    const tot=w.reduce((a,b,i)=>a+(hits.has(i)?0:b),0); if(tot<=0) break;
+    let r=Math.random()*tot;
+    for(let i=0;i<N;i++){ if(hits.has(i)) continue; r-=w[i];
+      if(r<=0){ if(!(c<=3&&res===16&&hits.has(i-1)&&hits.has(i-2))) hits.add(i); break; } }
+  }
+  const idx=[...hits].sort((a,b)=>a-b), L=SCALES[state.scale].i.length;
+  let cur=[0,0,1,2,L-1][Math.floor(Math.random()*5)];
+  const deg={};
+  idx.forEach((p,k)=>{
+    if(k===idx.length-1){cur=Math.abs(cur-L)<cur?L:0;}
+    else if(k>0){const st=[-2,-1,-1,0,1,1,2][Math.floor(Math.random()*7)];cur=Math.max(0,Math.min(L+2,cur+st));}
+    deg[p]=cur;
+  });
+  state.rhythm={res,bars,N,cells:[...Array(N).keys()].map(i=>({hit:hits.has(i),deg:deg[i]}))};
+}
+function labShape(){
+  if(state.lab==='gen') return state.rhythm;
+  const res=state.lab==='grid16'?16:8; return {res,bars:1,N:res,cells:null};
+}
+function guideMidi(d){
+  const iv=SCALES[state.scale].i, L=iv.length;
+  const base=state.inst==='bajo'?33+((state.scaleRoot-9+12)%12):57+((state.scaleRoot-9+12)%12);
+  return base+iv[d%L]+12*Math.floor(d/L);
+}
+function guideLabel(d){
+  const iv=SCALES[state.scale].i, x=iv[d%iv.length];
+  return state.labels==='deg'?DEG[x]:nm(state.scaleRoot+x);
+}
+function renderLab(){
+  $('genCtrls').hidden=state.lab!=='gen';
+  $('labGrid').hidden=state.lab==='off';
+  $('labGrid').classList.toggle('big',state.big);
+  $('keyNow').textContent=`${nm(state.key)} ${state.mode}`;
+  const hints={off:'La rejilla está apagada. Escoge Corcheas para empezar.',
+    grid8:'Cuenta “1 y 2 y 3 y 4 y” en voz alta con cada luz. Los números caen con el bombo.',
+    grid16:'Cuenta “1 e y a 2 e y a…”. Es rápido: bájale la velocidad si hace falta.',
+    gen:state.guide==='notes'?'Cada círculo trae la nota a tocar; también brilla en el mástil. Termina en la raíz para que suene a casa.':
+        state.guide==='root'?'Toca el ritmo en una sola nota: la raíz (naranja en el mástil). Concéntrate solo en el tiempo.':
+        'Solo suena un golpe en cada nota del ritmo. Aplaude o toca cualquier nota de la escala.'};
+  $('labHint').textContent=hints[state.lab];
+  if(state.lab==='off'){$('labGrid').innerHTML='';return;}
+  const R=labShape(), per=R.res/4, cnt=R.res===8?COUNT8:COUNT16; let html='';
+  for(let b=0;b<R.bars;b++){
+    html+=`<div class="lbar" style="grid-template-columns:repeat(${R.res},minmax(0,1fr))">`;
+    for(let j=0;j<R.res;j++){
+      const i=b*R.res+j, cell=R.cells?R.cells[i]:null, beat=j%per===0;
+      let cls='lc'+(beat?' beat':''), nt='<span class="nt"></span>';
+      if(!R.cells) cls+=' sub';
+      else if(cell.hit){cls+=' hit'; if(state.guide==='notes') nt=`<span class="nt lbl">${guideLabel(cell.deg)}</span>`;
+        else if(state.guide==='root') nt=`<span class="nt lbl">${state.labels==='deg'?'1':nm(state.scaleRoot)}</span>`;}
+      if(R.cells&&i>=R.N-per) cls+=' breath';
+      html+=`<div class="${cls}" data-i="${i}">${nt}<span class="ct">${cnt[j]}</span></div>`;
+    }
+    html+='</div>';
+  }
+  $('labGrid').innerHTML=html;
+}
+function labHead(i){document.querySelectorAll('#labGrid .lc').forEach(el=>el.classList.toggle('now',+el.dataset.i===i));}
+function flashMidi(m){
+  let g=[...document.querySelectorAll(`#board .dot[data-m="${m}"]`)];
+  const vis=g.filter(x=>x.getAttribute('opacity')==='1'); if(vis.length) g=vis;
+  g.forEach(x=>{x.classList.remove('flash');void x.getBBox();x.classList.add('flash');});
+}
+function applyVolumes(){
+  if(!A) return; const db=v=>v<=0?-60:Tone.gainToDb(v/100);
+  A.band.volume.value=db(state.vol.band); A.click.volume.value=-12+db(state.vol.click);
+  A.lead.volume.value=-6+db(state.vol.guide); A.wood.volume.value=-8+db(state.vol.guide); A.bass2.volume.value=-8+db(state.vol.guide);
 }
 
 /* ===================== CHORD PAD ===================== */
@@ -1059,13 +1217,16 @@ async function ensureAudio(){
   const rev=new Tone.Reverb({decay:2.8,wet:.3}).toDestination();
   const cho=new Tone.Chorus(3,2.5,.45).connect(rev).start();
   const lp=new Tone.Filter(1900,'lowpass').connect(cho);
+  const band=new Tone.Volume(0).toDestination();
   const bassOpts={oscillator:{type:'sawtooth'},filter:{Q:2,type:'lowpass'},envelope:{attack:.005,decay:.2,sustain:.55,release:.15},filterEnvelope:{attack:.001,decay:.15,sustain:.3,baseFrequency:110,octaves:2.6}};
   A={
-    kick:new Tone.MembraneSynth({pitchDecay:.04,octaves:6,envelope:{attack:.001,decay:.3,sustain:0}}).toDestination(),
+    band,
+    kick:new Tone.MembraneSynth({pitchDecay:.04,octaves:6,envelope:{attack:.001,decay:.3,sustain:0}}).connect(band),
     snare:new Tone.NoiseSynth({noise:{type:'white'},envelope:{attack:.001,decay:.16,sustain:0}}),
-    hat:new Tone.MetalSynth({envelope:{attack:.001,decay:.05,release:.01},harmonicity:5.1,modulationIndex:32,resonance:4000,octaves:1.5}).toDestination(),
-    keys:new Tone.PolySynth(Tone.Synth,{oscillator:{type:'triangle'},envelope:{attack:.02,decay:.4,sustain:.35,release:.9}}).toDestination(),
-    bass:new Tone.MonoSynth(bassOpts).toDestination(),
+    hat:new Tone.MetalSynth({envelope:{attack:.001,decay:.05,release:.01},harmonicity:5.1,modulationIndex:32,resonance:4000,octaves:1.5}).connect(band),
+    keys:new Tone.PolySynth(Tone.Synth,{oscillator:{type:'triangle'},envelope:{attack:.02,decay:.4,sustain:.35,release:.9}}).connect(band),
+    bass:new Tone.MonoSynth(bassOpts).connect(band),
+    wood:new Tone.MembraneSynth({pitchDecay:.008,octaves:2,envelope:{attack:.001,decay:.07,sustain:0}}).toDestination(),
     bass2:new Tone.MonoSynth(bassOpts).toDestination(),
     click:new Tone.Synth({oscillator:{type:'square'},envelope:{attack:.001,decay:.05,sustain:0,release:.01}}).toDestination(),
     lead:new Tone.PolySynth(Tone.Synth,{oscillator:{type:'fattriangle',spread:12},envelope:{attack:.004,decay:.5,sustain:.15,release:.6}}).toDestination(),
@@ -1076,10 +1237,11 @@ async function ensureAudio(){
       pluck:new Tone.PolySynth(Tone.Synth,{oscillator:{type:'triangle'},envelope:{attack:.002,decay:.7,sustain:0,release:.4}}).connect(rev)
     }
   };
-  A.snare.connect(new Tone.Filter(1400,'highpass').toDestination());
+  A.snare.connect(new Tone.Filter(1400,'highpass').connect(band));
   A.kick.volume.value=-4; A.snare.volume.value=-14; A.hat.volume.value=-30; A.keys.volume.value=-17;
   A.bass.volume.value=-9; A.bass2.volume.value=-8; A.click.volume.value=-12; A.lead.volume.value=-6; A.strum.volume.value=-13;
   A.pad.pad.volume.value=-22; A.pad.keys.volume.value=-15; A.pad.pluck.volume.value=-9;
+  applyVolumes();
   Tone.Transport.scheduleRepeat(tick,'16n');
   return true;
 }
@@ -1097,6 +1259,10 @@ function tick(time){
   }
   const n=progLen(); if(!n){step++;return;}
   const st=STYLES[state.style], s=step%16, bar=Math.floor(step/16);
+  if(s===0&&bar>0&&bar%4===0&&state.rotate&&!isCustom()&&state.view==='solo'){
+    state.key=(state.key+7)%12; lastCi=-1;
+    Tone.Draw.schedule(()=>{$('keySel').value=state.key;$('padKeySel').value=state.key;applySuggestion();renderLab();},time);
+  }
   const bpc=isBlues()?1:state.barsPer, ci=Math.floor(bar/bpc)%n, ch=chordAt(ci);
   if(s===0&&bar>0&&bar%4===0&&state.autoUp&&state.bpm<160){state.bpm+=4;Tone.Transport.bpm.value=state.bpm;Tone.Draw.schedule(syncBpmUI,time);}
   const six=60/state.bpm/4, t=(st.swing&&s%4===2)?time+(st.swing-.5)*2*six:time;
@@ -1119,6 +1285,21 @@ function tick(time){
     const slot=s/2, c=pattern().p[slot];
     if(state.hear&&c!=='.') patternHit(c,ch,time,ci);
     Tone.Draw.schedule(()=>ritmoHead(slot),time);
+  }
+  if(state.view==='solo'&&state.lab!=='off'){
+    const R=labShape(), per=R.res/4, on=R.res===16||s%2===0;
+    if(on){
+      const pos=R.res===16?s:s/2, i=(bar%R.bars)*R.res+pos;
+      if(!R.cells){A.wood.triggerAttackRelease(pos%per===0?1100:800,'32n',t,pos%per===0?.9:.45);}
+      else if(R.cells[i]&&R.cells[i].hit){
+        const cell=R.cells[i];
+        if(state.guide==='basic') A.wood.triggerAttackRelease(1000,'32n',t,.9);
+        else{const m=state.guide==='root'?guideMidi(0):guideMidi(cell.deg);
+          if(state.inst==='bajo') A.bass2.triggerAttackRelease(hz(m),'8n',t,.9); else A.lead.triggerAttackRelease(hz(m),'8n',t,.85);
+          Tone.Draw.schedule(()=>flashMidi(m),t);}
+      }
+      Tone.Draw.schedule(()=>labHead(i),time);
+    }
   }
   if(ci!==lastCi){lastCi=ci;Tone.Draw.schedule(()=>{state.curChord=ci;onChordChange();},time);}
   if(s%4===0){const left=bpc*4-((bar%bpc)*4+s/4), total=bpc*4;
@@ -1145,7 +1326,7 @@ async function togglePlay(){
   if(!(await ensureAudio())) return;
   if(state.playing){
     Tone.Transport.stop(); state.playing=false; state.curChord=null; lastCi=-1; step=0; cnt=0;
-    clearInterval(timerId); beatUI(-1); ritmoHead(-1); renderChips(); updateNow(); renderView();
+    clearInterval(timerId); beatUI(-1); ritmoHead(-1); labHead(-1); renderChips(); updateNow(); renderView();
   }else{
     step=0; lastCi=-1; cnt=state.countIn?16:0; Tone.Transport.bpm.value=state.bpm; Tone.Transport.start('+0.08'); state.playing=true;
     updateNow();
@@ -1192,9 +1373,19 @@ segBind('instSeg','i',v=>{state.inst=v;document.body.dataset.inst=v;state.path.c
   setView(state.view,false);});
 segBind('namesToggle','n',v=>{state.names=v;fillSelects();renderChips();suggestionText();updateNow();renderView();});
 segBind('modeSeg','m',v=>{state.mode=v;if(!isCustom())state.prog=0;onKeyOrMode();});
-segBind('labelSeg','l',v=>{state.labels=v;drawBoard();drawPadBoard();});
+segBind('labelSeg','l',v=>{state.labels=v;drawBoard();drawPadBoard();renderLab();});
 segBind('padModeSeg','p',v=>{state.padMode=v;renderPadTypes();renderKeys();});
 segBind('feelSeg','f',v=>{state.feel=v;});
+segBind('labSeg','l',v=>{state.lab=v;if(v==='gen'&&!state.rhythm)genRhythm();renderLab();});
+segBind('guideSeg','g2',v=>{state.guide=v;renderLab();});
+$('cxRange').oninput=e=>{state.cx=+e.target.value;$('cxVal').textContent=CXN[state.cx-1];};
+$('cxRange').onchange=()=>{genRhythm();renderLab();};
+$('newRhythm').onclick=()=>{genRhythm();renderLab();};
+chk('bars2Chk','bars2Tog','labBars2',()=>{genRhythm();renderLab();});
+chk('bigChk','bigTog','big',renderLab);
+chk('rotChk','rotTog','rotate');
+$('randKey').onclick=()=>{let k;do{k=Math.floor(Math.random()*12);}while(k===state.key);state.key=k;$('keySel').value=k;$('padKeySel').value=k;onKeyOrMode();};
+['Band','Click','Guide'].forEach(n=>$('vol'+n).oninput=e=>{state.vol[n.toLowerCase()]=+e.target.value;applyVolumes();});
 function setVoicing(v){state.voicing=v;setSeg('voiceSeg','v',v);$('voiceSel').value=v;renderView();}
 segBind('voiceSeg','v',setVoicing);
 $('voiceSel').onchange=e=>setVoicing(e.target.value);
@@ -1202,8 +1393,8 @@ $('keySel').onchange=e=>{state.key=+e.target.value;$('padKeySel').value=state.ke
 $('padKeySel').onchange=e=>{state.key=+e.target.value;$('keySel').value=state.key;onKeyOrMode();};
 $('progSel').onchange=e=>{state.prog=e.target.value==='custom'?'custom':+e.target.value;state.curChord=null;lastCi=-1;
   $('barsSel').disabled=isBlues();renderChips();applySuggestion();updateNow();renderView();};
-$('rootSel').onchange=e=>{state.scaleRoot=+e.target.value;state.path.clear();drawBoard();};
-$('scaleSel').onchange=e=>{state.scale=e.target.value;state.path.clear();drawBoard();};
+$('rootSel').onchange=e=>{state.scaleRoot=+e.target.value;state.path.clear();drawBoard();renderLab();};
+$('scaleSel').onchange=e=>{state.scale=e.target.value;state.path.clear();drawBoard();renderLab();};
 $('posSel').onchange=e=>{state.pos=e.target.value;drawBoard();};
 $('backSug').onclick=applySuggestion;
 $('styleSel').onchange=e=>{state.style=e.target.value;};
@@ -1258,7 +1449,7 @@ document.addEventListener('keydown',e=>{
 });
 
 /* ===================== ARRANQUE ===================== */
-fillSelects(); syncBpmUI(); applySuggestion(); setView('ritmo',false);
+genRhythm(); fillSelects(); syncBpmUI(); applySuggestion(); setView('ritmo',false);
 </script>
 </body>
 </html>

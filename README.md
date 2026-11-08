@@ -8,7 +8,7 @@
 |---|---|---|
 | 🥁 **Ritmo** | Básico | Tocar parejo y a tiempo. Patrones de rasgueo con flechas (↓ ↑) que se iluminan, o patrones de bajo (raíz, quinta, octava). |
 | 🎸 **Acompañar** | Básico | Tocar los acordes de una canción con la banda. Diagrama grande del acorde actual, el que sigue y cuántos tiempos faltan para cambiar. |
-| 🔥 **Solo** | Intermedio | Improvisar. El mástil ilumina la escala que combina, la raíz y las notas del acorde que suena. Marca tu propio “camino” para armar licks. |
+| 🔥 **Solo** | Intermedio | Improvisar. El mástil ilumina la escala que combina, la raíz y las notas del acorde que suena. Incluye **Ritmo del solo**: rejilla de corcheas y semicorcheas, generador de ritmos con 5 niveles y guía con la raíz o con las notas, en los 12 tonos. |
 | 🎛️ **Crear bases** | Libre | Chord Pad: una tecla = un acorde que ya combina con el tono. Graba tu progresión y úsala como pista. |
 
 Cada rutina trae una guía de 3 pasos.
@@ -23,6 +23,8 @@ Cada rutina trae una guía de 3 pasos.
 - **Cronómetro** de práctica.
 - **Diagramas de acordes** reales (abiertos y con cejilla), con la raíz marcada en naranja.
 - **Esquema en números romanos** (I–V–vi–IV) debajo de cada acorde: el mismo patrón sirve en cualquier tono.
+- **Ritmo del solo:** entrena dónde caen tus notas. Rejilla para contar (“1 y 2 y”, “1 e y a”), generador de ritmos de 1 o 2 compases que terminan en silencio, complejidad de Simple a Reto, guía que suena solo el ritmo, la raíz o las notas (que brillan en el mástil), modo grande para ver de lejos y volúmenes separados.
+- **Todos los tonos:** tono al azar o recorrido automático por el círculo de quintas cada 4 compases.
 - **Formas de acordes optimizadas:** elige 🟢 Fáciles (abiertos), 🌊 Fluidas (triadas en 3 cuerdas), Cejillas (misma zona) o Clásicas. La app calcula la combinación en la que la mano se mueve menos durante toda la vuelta, marca en **verde los dedos que se quedan fijos** y te dice cómo hacer cada cambio.
 - **Escala sugerida automática** (ej. en Do mayor → pentatónica menor de La).
 - **Glosario** integrado con botones **?**.
