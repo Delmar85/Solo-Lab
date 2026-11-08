@@ -11,6 +11,18 @@
 | 🔥 **Solo** | Intermedio | Improvisar. El mástil ilumina la escala que combina, la raíz y las notas del acorde que suena. Incluye **Ritmo del solo**: rejilla de corcheas y semicorcheas, generador de ritmos con 5 niveles y guía con la raíz o con las notas, en los 12 tonos. |
 | 🎛️ **Crear bases** | Libre | Chord Pad: una tecla = un acorde que ya combina con el tono. Graba tu progresión y úsala como pista. |
 
+### Teoría y oído
+
+| Sección | Qué entrenas |
+|---|---|
+| 👂 **Oído** | Quiz de mayor o menor, intervalos (con canciones de referencia) y cambios de acorde (IV, V, vi, ii, iii). 3 niveles, aciertos y racha. |
+| 🗺️ **Notas del mástil** | Juego de “encuentra la nota” en la cuerda E, la A, ambas o todas. Mide tu velocidad. Modo estudio para ver todas las notas. |
+| 🖐️ **CAGED** | Las 5 formas (C, A, G, E, D) de cualquier acorde mayor por todo el mástil, con la pentatónica encima para solear. |
+| 🎡 **Círculo de quintas** | Círculo interactivo: toca un tono y ve su familia de acordes (I, ii, iii, IV, V, vi, vii°), escucha I–IV–V–I y mándalo a la pista. |
+| 🎚️ **Afinador** | Afinador con micrófono para guitarra y bajo, más tonos de referencia para afinar de oído. |
+
+En el inicio hay una **rutina diaria de 25 minutos** con atajos a cada sección y tips de técnica limpia para guitarra y bajo.
+
 Cada rutina trae una guía de 3 pasos.
 
 ## Funciones
@@ -53,7 +65,7 @@ Para actualizar: **Add file → Upload files** y sube el nuevo `index.html`.
 - [x] Rutinas de gimnasio (Ritmo, Acompañar, Solo, Crear)
 - [x] Diagramas de acordes y modo bajo
 - [ ] Guardar tus progresiones y licks favoritos
-- [ ] Afinador
+- [x] Afinador, oído, notas del mástil, CAGED y círculo de quintas
 - [ ] Afinaciones alternativas (Drop D, medio tono abajo)
 - [ ] Retos diarios y registro de progreso
 
