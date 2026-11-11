@@ -2,7 +2,19 @@
 
 **Tu gimnasio musical para guitarra y bajo, en el navegador.** Escoges qué entrenar, le das play y sigues lo que se ilumina. Hecho para principiantes: cada palabra técnica tiene un botón **?** que la explica en sencillo.
 
-## Las 4 rutinas
+## El camino (curso guiado)
+
+Lecciones cortas, una habilidad a la vez, para guitarra (27) y bajo (23):
+
+- **Escucha y te toca:** en cada lección la app toca el patrón (👂 Escucha) y luego se calla para que lo toques tú con la banda (🎸 Te toca), por rondas.
+- **Tres velocidades:** 🐢 Lento → Medio → 🐇 Rápido. Tú te calificas (“Me salió” / “Me costó”) y ganas estrellas. Con el modo **∞ Libre** la lección se queda sonando sin fin.
+- **Guitarra:** pulso, primeros cambios, rasgueo pop, chasquido, bajo y rasgueo, contratiempo, funk en semicorcheas, arpegios p-i-m-a, pellizco, triadas, power chords, cejilla y licks de solo.
+- **Bajo:** pegarse al bombo, raíz y quinta, octavas, síncopa, reggae, notas muertas, raíz-3-5, boogie de blues, walking, galope y fills.
+- **Misiones** de oído, notas del mástil, CAGED y círculo de quintas.
+- **Progreso guardado** en tu navegador: lecciones, estrellas, racha de días y minutos tocados.
+- **🎲 Jam al azar:** tono, progresión y estilo sorpresa para improvisar sin pensar.
+
+## Práctica libre: las 4 rutinas
 
 | Rutina | Nivel | Qué entrenas |
 |---|---|---|
