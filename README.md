@@ -14,6 +14,13 @@ Lecciones cortas, una habilidad a la vez, para guitarra (27) y bajo (23):
 - **Progreso guardado** en tu navegador: lecciones, estrellas, racha de días y minutos tocados.
 - **🎲 Jam al azar:** tono, progresión y estilo sorpresa para improvisar sin pensar.
 
+## Caminos y formas (v9)
+
+- **Caminos en la escala (Solo):** Caja 1, Mini-caja (cuerdas delgadas), **Extendida en diagonal** con flechas de deslizamiento, cajas 2 a 5 y todo el mástil, en cualquier tono. Cada camino dice dónde están las raíces para aterrizar y se puede escuchar.
+- **Guía de frases:** mientras suena la pista te marca frase, repetición, subida y el momento de **caer en la raíz**, más las notas fuertes sobre cada acorde.
+- **Camino libre:** marca tus propias notas y practícalas.
+- **Fluidas numeradas (Acompañar):** hasta 6 juegos de triadas para la misma progresión, de la más fácil a la más retadora, con sus cuerdas y trastes.
+
 ## Práctica libre: las 4 rutinas
 
 | Rutina | Nivel | Qué entrenas |

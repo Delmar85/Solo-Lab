@@ -217,6 +217,18 @@ input[type=range]{width:100%;accent-color:var(--coral)}
 .keynow{font:400 22px 'Permanent Marker';color:var(--mint)}
 @media (max-width:560px){.vol{grid-template-columns:1fr}.lc{height:54px;border-radius:7px}.lbar{gap:2px}.lbar .lc.beat:not(:first-child){margin-left:3px}}
 
+/* CAMINOS */
+.coach{margin-top:14px;border-radius:16px;padding:12px 14px;background:var(--deep);border:1px solid var(--line);text-align:center}
+.coach b{display:block;font:400 clamp(17px,4.6vw,22px) 'Permanent Marker';text-transform:uppercase;color:var(--ink)}
+.coach span{display:block;font:600 13.5px 'DM Sans';color:var(--muted);margin-top:3px}
+.coach.land{background:rgba(255,122,69,.14);border-color:var(--coral)}
+.coach.land b{color:var(--coral)}
+.landing .dot.rt{animation:pop .45s ease infinite alternate}
+.caminfo{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:6px}
+.caminfo li{font-size:14.5px;color:#D8D3CB;background:var(--deep);border:1px solid var(--line);border-radius:12px;padding:8px 12px}
+.caminfo li b{color:var(--mint)}
+.caminfo li.rt b{color:var(--coral)}
+
 /* PANTALLAS */
 body[data-screen="home"] #work,body[data-screen="home"] .player{display:none}
 body[data-screen="home"]{padding-bottom:40px}
@@ -416,7 +428,7 @@ footer{text-align:center;color:var(--muted);font:400 14px 'Permanent Marker';pad
 <header class="hero">
   <div class="wrap" style="position:relative">
     <div class="topbar">
-      <button class="tape or" id="homeBtn">v8 · curso</button>
+      <button class="tape or" id="homeBtn">v9 · curso</button>
       <div class="top-ctrls">
         <div class="seg light" id="instSeg"><button data-i="guitarra" class="on">🎸 Guitarra</button><button data-i="bajo">Bajo</button></div>
         <div class="seg light" id="namesToggle"><button data-n="en" class="on">C D E</button><button data-n="es">Do Re Mi</button></div>
@@ -528,6 +540,7 @@ footer{text-align:center;color:var(--muted);font:400 14px 'Permanent Marker';pad
         <div class="lbl" style="margin-bottom:8px">Formas de los acordes <button class="q" data-g="voicing">?</button></div>
         <div class="seg" id="voiceSeg"><button data-v="facil" class="on">🟢 Fáciles</button><button data-v="fluido">🌊 Fluidas</button><button data-v="cejilla">Cejillas</button><button data-v="clasico">Clásicas</button></div>
         <p class="vinfo" id="vinfo"></p>
+        <div class="pbtns" id="fluVars" style="margin:0 0 12px"></div>
         <div class="vscore" id="vscore"></div>
       </div>
       <div class="acc">
@@ -613,7 +626,7 @@ footer{text-align:center;color:var(--muted);font:400 14px 'Permanent Marker';pad
       <div class="row" style="margin-top:16px">
         <div class="field"><span class="lbl">Raíz <button class="q" data-g="raiz">?</button></span><select id="rootSel"></select></div>
         <div class="field" style="flex:1 1 170px"><span class="lbl">Escala <button class="q" data-g="escala">?</button></span><select id="scaleSel"></select></div>
-        <div class="field"><span class="lbl">Posición <button class="q" data-g="posicion">?</button></span><select id="posSel"></select></div>
+        <div class="field"><span class="lbl">Camino <button class="q" data-g="camino">?</button></span><select id="posSel"></select></div>
         <div class="field"><span class="lbl">Ver como <button class="q" data-g="grados">?</button></span>
           <div class="seg" id="labelSeg"><button data-l="notes" class="on">Notas</button><button data-l="deg">Grados</button></div></div>
       </div>
@@ -621,16 +634,20 @@ footer{text-align:center;color:var(--muted);font:400 14px 'Permanent Marker';pad
         <label class="tog on" id="ctTog"><input type="checkbox" id="ctChk" checked>Resaltar el acorde que suena</label>
         <button class="btn ghost sm" id="backSug">↺ Volver a la escala sugerida</button>
       </div>
+      <div class="coach" id="coach"><b></b><span></span></div>
       <div class="board-wrap" id="board"></div>
       <p class="hint">← Desliza para ver todo el mástil · Toca una nota para escucharla</p>
+      <div class="toggles"><button class="btn mint sm" id="playCamino">▶ Escuchar este camino</button></div>
+      <ul class="caminfo" id="camInfo"></ul>
       <div class="legend">
         <span><i style="background:#FF7A45"></i>Raíz (casa)</span>
         <span><i style="background:#ECE7DF"></i>Nota de la escala</span>
         <span><i style="border:3px solid #FFC857"></i>Nota del acorde que suena</span>
         <span><i style="background:#3DDBB4"></i>Mi camino</span>
+        <span><i style="background:#FF5C8A;border-radius:3px;height:5px;vertical-align:3px"></i>Desliza el dedo →</span>
       </div>
 
-      <h3 class="sub">Mi camino (tus licks)</h3>
+      <h3 class="sub">Camino libre (tus licks)</h3>
       <div class="toggles">
         <label class="tog" id="pathTog"><input type="checkbox" id="pathChk">✏️ Marcar notas</label>
         <label class="tog" id="onlyTog"><input type="checkbox" id="onlyChk">Ver solo mi camino</label>
@@ -1039,6 +1056,7 @@ const GLOSS={
   grados:['Grados','El número de cada nota dentro de la escala: 1 es la raíz, b3 la tercera menor, 5 la quinta… Sirve para aprender patrones que funcionan en cualquier tono.'],
   posicion:['Posición','Una “caja” de 4 o 5 trastes donde tocas la escala sin mover la mano. Aprende una a la vez, empezando por la Posición 1.'],
   inversion:['Inversión','El mismo acorde pero con otra de sus notas abajo. Suena más suave al pasar de un acorde a otro.'],
+  camino:['Caminos','Formas de recorrer la misma escala. Caja: 2 notas por cuerda sin mover la mano. Mini-caja: solo las cuerdas delgadas, lo más fácil para empezar. Extendida: una figura de 5 notas que se repite en diagonal; en cada flecha deslizas el dedo y avanzas por el mástil. Son las mismas notas: solo cambia por dónde caminas.'],
   subdiv:['Corcheas y semicorcheas','Dividir cada tiempo en partes iguales. Corcheas: 2 por tiempo, se cuenta “1 y 2 y”. Semicorcheas: 4 por tiempo, se cuenta “1 e y a”. Los solos buenos viven en esas divisiones, no solo en los números.'],
   circulo:['Círculo de quintas','El orden en que los tonos se suceden de forma natural: C → G → D → A → E → B → F# → Db → Ab → Eb → Bb → F. Practicar así te hace dominar el mástil en los 12 tonos.'],
   romanos:['El esquema (números romanos)','Cada acorde se nombra por su lugar en el tono: I es el acorde “casa”, IV y V son sus vecinos fuertes, vi es el menor más usado. Mayúscula = mayor, minúscula = menor, ° = disminuido. Si aprendes I–V–vi–IV, ya sabes tocar esa progresión en cualquier tono.'],
@@ -1087,7 +1105,7 @@ const DEFAULTS={
 const state={view:'ritmo',inst:'guitarra',names:'en',key:0,mode:'mayor',prog:0,custom:[],scaleRoot:9,scale:'pmen',pos:'1',labels:'notes',
   chordTones:true,pathMode:false,onlyPath:false,path:new Set(),playing:false,curChord:null,
   bpm:80,style:'rock',barsPer:2,drums:false,chords:false,bass:false,metro:true,countIn:true,autoUp:false,
-  pattern:0,hear:true,one:true,secs:0,voicing:'facil',lab:'gen',cx:1,labBars2:false,guide:'root',big:false,rotate:false,rhythm:null,vol:{band:80,click:80,guide:85},
+  pattern:0,hear:true,one:true,secs:0,voicing:'facil',fluVar:0,lab:'gen',cx:1,labBars2:false,guide:'root',big:false,rotate:false,rhythm:null,vol:{band:80,click:80,guide:85},
   padMode:'tono',padType:0,padColor:0,feel:'chord',sound:'pad',inv:0,oct:3,padBass:true,padChord:null,rec:[],recording:false};
 
 const $=id=>document.getElementById(id);
@@ -1147,7 +1165,7 @@ function chordSVG(c,sh,anch){
 const TRI_SETS=[[3,4,5],[2,3,4],[1,2,3]]; // G-B-e, D-G-B, A-D-G
 const VINFO={
   facil:'Acordes abiertos siempre que se pueda: los más fáciles para empezar. Solo usa cejilla cuando no hay de otra.',
-  fluido:'Triadas: el acorde en solo 3 cuerdas, elegidas para que la mano casi no se mueva. Rasguea solo las cuerdas marcadas. Suena ligero y muy pro.',
+  fluido:'Triadas: el acorde en solo 3 cuerdas, con la mano casi quieta. Abajo tienes varias opciones numeradas, de la más fácil a la más retadora: mismas notas, distinta zona del mástil. Rasguea solo las cuerdas marcadas.',
   cejilla:'Todas con cejilla y cerca una de otra: la misma forma de mano, solo deslizas por el mástil.',
   clasico:'Las formas más conocidas de cada acorde, sin optimizar el recorrido.'
 };
@@ -1213,9 +1231,39 @@ function solveVoicing(mode,chords){
   }
   return bestPath;
 }
+function solvePath(cands,un,pair){
+  const n=cands.length; if(!n||cands.some(l=>!l.length)) return null;
+  if(n===1){const b=cands[0].reduce((m,x)=>un(x)<un(m)?x:m);return {path:[b],cost:un(b)};}
+  let best=Infinity,bestPath=null;
+  for(const s0 of cands[0]){
+    let prev=[{cost:un(s0),path:[s0]}], prevC=[s0];
+    for(let i=1;i<n;i++){
+      prev=cands[i].map(b=>{let m=Infinity,mp=null;
+        prev.forEach((p,j)=>{const v=p.cost+pair(prevC[j],b);if(v<m){m=v;mp=p.path;}});
+        return {cost:m+un(b),path:mp.concat([b])};});
+      prevC=cands[i];
+    }
+    prev.forEach((p,j)=>{const tot=p.cost+pair(prevC[j],s0);if(tot<best){best=tot;bestPath=p.path;}});
+  }
+  return {path:bestPath,cost:best};
+}
 const vCache={};
+function fluidOptions(){
+  const L=chordList(), key='flu|'+L.map(c=>c.root+c.suf).join(','); if(vCache[key]) return vCache[key];
+  const all=L.map(candTriads), out=[], fr=x=>x.f.filter(v=>v!==null);
+  const zones=[x=>Math.max(...fr(x))<=7, x=>Math.min(...fr(x))>=5&&Math.max(...fr(x))<=12];
+  TRI_SETS.forEach((set,si)=>zones.forEach(ok=>{
+    const r=solvePath(all.map(l=>l.filter(x=>x.set===si&&ok(x))),x=>.6*x.diff,handMove); if(!r) return;
+    const sig=r.path.map(v=>v.f.join()).join('|'); if(out.some(o=>o.sig===sig)) return;
+    const fs=r.path.flatMap(fr);
+    out.push({sig,path:r.path,cost:r.cost+si*2.5+Math.min(...fs)*.3,label:`cuerdas ${['1-2-3','2-3-4','3-4-5'][si]} · trastes ${Math.min(...fs)}–${Math.max(...fs)}`});
+  }));
+  out.sort((a,b)=>a.cost-b.cost);
+  return vCache[key]=out.slice(0,6);
+}
 function chordList(){return [...Array(progLen()).keys()].map(chordAt);}
 function voicings(mode=state.voicing){
+  if(mode==='fluido'){const o=fluidOptions(); if(o.length) return o[Math.min(state.fluVar,o.length-1)].path;}
   const L=chordList(), k=mode+'|'+L.map(c=>c.root+c.suf).join(',');
   return vCache[k]||(vCache[k]=solveVoicing(mode,L));
 }
@@ -1249,7 +1297,7 @@ function shapeNotes(sh){return sh.f.map((v,i)=>v===null?null:LOW6[i]+v).filter(v
 function bassRootText(pc){const e=(pc-4+12)%12,a=(pc-9+12)%12;return a<e?`cuerda A (5ª), traste ${a}`:`cuerda E (4ª), traste ${e}`;}
 
 /* ===================== DIAPASONES ===================== */
-function renderBoard(el,frets,strings,dotFor){
+function renderBoard(el,frets,strings,dotFor,over){
   const n=strings.length,x0=46,fw=58,top=26,sp=34,W=x0+frets*fw+14,BH=top*2+(n-1)*sp,H=BH+24;
   const cx=f=>f===0?22:x0+(f-.5)*fw, mid=top+(n-1)/2*sp;
   let s=`<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
@@ -1261,33 +1309,92 @@ function renderBoard(el,frets,strings,dotFor){
   for(let f=1;f<=frets;f++){const x=x0+f*fw;s+=`<line x1="${x}" y1="${top-12}" x2="${x}" y2="${top+(n-1)*sp+12}" stroke="#8A8580" stroke-width="2.5"/>`;}
   strings.forEach((o,i)=>{const y=top+i*sp;s+=`<line x1="0" y1="${y}" x2="${W}" y2="${y}" stroke="#D8D1C4" stroke-width="${(n===4?1.6:1)+i*(n===4?.8:.55)}"/>`;});
   for(let f=0;f<=frets;f++) s+=`<text x="${cx(f)}" y="${H-6}" text-anchor="middle" font-family="Permanent Marker" font-size="13" fill="#8E93A1">${f}</text>`;
+  if(over) s+=over({cx,y:si=>top+si*sp});
   strings.forEach((o,si)=>{for(let f=0;f<=frets;f++){
     const m=o+f, d=dotFor(si,f,m,m%12); if(!d) continue;
     const x=cx(f),y=top+si*sp;
-    s+=`<g class="dot" data-k="${d.k}" data-m="${m}" opacity="${d.op??1}">`;
+    s+=`<g class="dot${d.cls?' '+d.cls:''}" data-k="${d.k}" data-m="${m}" opacity="${d.op??1}">`;
     if(d.ring) s+=`<circle cx="${x}" cy="${y}" r="16.5" fill="none" stroke="#FFC857" stroke-width="3.5"/>`;
     s+=`<circle cx="${x}" cy="${y}" r="13" fill="${d.fill}" stroke="#15171C" stroke-width="2"/>`;
     s+=`<text x="${x}" y="${y+4.5}" text-anchor="middle" font-family="DM Sans" font-weight="700" font-size="${d.label.length>2?10:12.5}" fill="#15171C" pointer-events="none">${d.label}</text></g>`;
   }});
   el.innerHTML=s+'</svg>';
 }
+function extPath(){
+  const sc=state.scale; if(!['pmen','blues','pmay'].includes(sc)) return null;
+  const T=tuning(), n=T.length, r=(state.scaleRoot+(sc==='pmay'?9:0))%12;
+  let start=n-1, rf=(r-T[start]%12+12)%12;
+  if(rf<2||rf>8){start=n-2; rf=(r-T[start]%12+12)%12; if(rf<2) rf+=12;}
+  const base=T[start]+rf, seq=[], slides=[]; let si=start, g=0;
+  while(si>=0){
+    const grp=(g%2===0?[-2,0]:(sc==='blues'?[3,5,6,7]:[3,5,7])).map(x=>x+12*Math.floor(g/2));
+    const fr=grp.map(x=>base+x-T[si]); if(fr.some(f=>f<0||f>15)) break;
+    grp.forEach((x,j)=>seq.push({si,f:fr[j],m:base+x}));
+    if(g%2===1) slides.push({si,a:fr[fr.length-2-(sc==='blues'?1:0)],b:fr[fr.length-1]});
+    si--; g++;
+  }
+  return {seq,slides,keys:new Set(seq.map(x=>x.si+'-'+x.f))};
+}
 function posWindow(){
   if(state.pos==='all') return null;
-  const k=+state.pos-1, iv=SCALES[state.scale].i, rootF=(state.scaleRoot-4+12)%12;
+  if(state.pos==='ext'){const e=extPath(); if(!e) return null; const fr=e.seq.map(x=>x.f); return [Math.min(...fr),Math.max(...fr)];}
+  const k=state.pos==='mini'?0:+state.pos-1, iv=SCALES[state.scale].i, rootF=(state.scaleRoot-4+12)%12;
   let start=rootF+iv[k%iv.length]; if(start>11) start-=12;
   return [k===0?start:start-1, start+3];
 }
+function caminoFilter(){
+  const p=state.pos; if(p==='all') return null;
+  if(p==='ext'){const e=extPath(); return e?((si,f)=>e.keys.has(si+'-'+f)):null;}
+  const w=posWindow(), top=p==='mini'?(tuning().length===4?1:2):99;
+  return (si,f)=>f>=w[0]&&f<=w[1]&&si<=top;
+}
+function caminoSeq(){
+  if(state.pos==='ext'){const e=extPath(); if(e) return e.seq;}
+  const iv=SCALES[state.scale].i, filt=caminoFilter(), T=tuning(), out=[], seen=new Set();
+  for(let si=T.length-1;si>=0;si--)for(let f=0;f<=15;f++){const m=T[si]+f;
+    if(!iv.includes((m-state.scaleRoot+120)%12)||(filt&&!filt(si,f))||seen.has(m)) continue; seen.add(m); out.push({si,f,m});}
+  return out.sort((a,b)=>a.m-b.m);
+}
+function renderCamino(){
+  const p=state.pos, e=p==='ext'?extPath():null, bajo=state.inst==='bajo', R=nm(state.scaleRoot);
+  const roots=caminoSeq().filter(x=>x.m%12===state.scaleRoot).map(x=>`cuerda ${x.si+1}, traste ${x.f}`);
+  const T={
+    '1':['<b>Caja 1, la base:</b> dos notas por cuerda y la mano no se mueve. De aquí salen casi todos los licks clásicos.','<b>Cómo tocarla:</b> índice en el traste de inicio; anular o meñique en la otra nota de cada cuerda.'],
+    mini:[`<b>Mini-caja, lo más fácil:</b> solo las ${bajo?'2':'3'} cuerdas delgadas de la caja 1. Con ${bajo?'cuatro':'seis'} notas ya haces un solo completo.`,'<b>Para qué sirve:</b> frases cortas y cantadas. Empieza aquí si la caja completa te abruma.'],
+    ext:e?['<b>Extendida en diagonal:</b> es UNA figura de 5 notas (2 en una cuerda, 3 en la siguiente) que se repite cada octava. Te aprendes una y ya recorres medio mástil.','<b>Las flechas rosas:</b> desliza el mismo dedo dos trastes sin soltar la cuerda. Así cambias de zona sin brincar.','<b>Úsala para subir:</b> empieza grave en la primera figura y sube una figura por frase; el solo va creciendo solo.']
+         :['<b>La extendida es para pentatónicas</b> (menor, mayor o blues). Con esta escala te muestro todo el mástil; cambia la escala para verla.'],
+    all:['<b>Todo el mástil:</b> todas las notas de la escala. Úsalo para ver cómo se conectan las cajas, no para empezar.']
+  };
+  const tips=(T[p]||[`<b>Caja ${p}:</b> se encima con las cajas vecinas; las notas de la orilla son compartidas y sirven de puente.`]).slice();
+  if(roots.length) tips.push(`<li class="rt"><b>🎯 Dónde caer (raíz ${R}):</b> ${roots.join(' · ')}. Termina ahí tus frases y sonará a “casa”.</li>`);
+  $('camInfo').innerHTML=tips.map(t=>t.startsWith('<li')?t:`<li>${t}</li>`).join('');
+}
+function coachReset(){
+  const c=$('coach'); c.className='coach'; $('board').classList.remove('landing');
+  c.firstElementChild.textContent='Dale play y sigue la guía de frases';
+  c.lastElementChild.textContent='Te voy diciendo cuándo hacer una frase, cuándo subir y cuándo caer en la raíz.';
+}
+function coachUI(ph,ch){
+  const c=$('coach'), iv=SCALES[state.scale].i, R=nm(state.scaleRoot);
+  const txt=['🗣️ Frase: 3 a 5 notas','🔁 Repite la idea o contéstala','↗️ Sube: otra cuerda o sigue la flecha',`🎯 Aterriza en la raíz (${R}) y deja silencio`][ph];
+  const good=ch.pcs.filter(pc=>iv.includes((pc-state.scaleRoot+12)%12)).map(nm);
+  c.className='coach'+(ph===3?' land':''); $('board').classList.toggle('landing',ph===3);
+  c.firstElementChild.textContent=txt;
+  c.lastElementChild.textContent=`Compás ${ph+1} de 4 · Sobre ${cname(ch)} suenan fuerte: ${good.length?good.join(', '):R} (círculo amarillo)`;
+}
 function curOrFirst(){return state.curChord!==null?state.curChord:0;}
 function drawBoard(){
-  const iv=SCALES[state.scale].i, win=posWindow();
+  const iv=SCALES[state.scale].i, filt=caminoFilter(), ext=state.pos==='ext'?extPath():null;
   const cps=(state.chordTones&&state.curChord!==null&&progLen())?chordAt(state.curChord).pcs:[];
   renderBoard($('board'),15,tuning(),(si,f,m,pc)=>{
     const rel=(pc-state.scaleRoot+12)%12; if(!iv.includes(rel)) return null;
     const k=si+'-'+f, inPath=state.path.has(k);
     if(state.onlyPath&&state.path.size&&!inPath) return null;
-    return {k, fill:inPath?'#3DDBB4':rel===0?'#FF7A45':'#ECE7DF', ring:cps.includes(pc),
-      op:(win&&(f<win[0]||f>win[1]))?.13:1, label:state.labels==='deg'?DEG[rel]:nm(pc)};
-  });
+    return {k, cls:rel===0?'rt':'', fill:inPath?'#3DDBB4':rel===0?'#FF7A45':'#ECE7DF', ring:cps.includes(pc),
+      op:(filt&&!filt(si,f))?.13:1, label:state.labels==='deg'?DEG[rel]:nm(pc)};
+  },ext&&!state.onlyPath?(g=>ext.slides.map(sl=>{const y=g.y(sl.si), x1=g.cx(sl.a)+13, x2=g.cx(sl.b)-15;
+    return `<line x1="${x1}" y1="${y}" x2="${x2-6}" y2="${y}" stroke="#FF5C8A" stroke-width="5" stroke-linecap="round"/><polygon points="${x2},${y} ${x2-11},${y-8} ${x2-11},${y+8}" fill="#FF5C8A"/>`;}).join('')):null);
+  renderCamino();
 }
 function scrollBoardToPos(){const w=posWindow();$('board').scrollLeft=w?Math.max(0,46+(w[0]-1)*58-40):0;}
 function drawPadBoard(){
@@ -1320,7 +1427,7 @@ function fillSelects(){
   $('scaleSel').value=state.scale;
   $('styleSel').innerHTML=Object.entries(STYLES).map(([k,v])=>`<option value="${k}">${v.n}</option>`).join('');
   $('styleSel').value=state.style;
-  $('posSel').innerHTML='<option value="all">Todo el mástil</option>'+[1,2,3,4,5].map(n=>`<option value="${n}">Posición ${n}${n===1?' (empieza aquí)':''}</option>`).join('');
+  $('posSel').innerHTML='<option value="1">📦 Caja 1 · la base (empieza aquí)</option><option value="mini">🎯 Mini-caja · cuerdas delgadas (la más fácil)</option><option value="ext">🪜 Extendida · diagonal (para moverte)</option>'+[2,3,4,5].map(n=>`<option value="${n}">Caja ${n}</option>`).join('')+'<option value="all">Todo el mástil</option>';
   $('posSel').value=state.pos;
   $('barsSel').value=state.barsPer;
 }
@@ -1370,7 +1477,7 @@ function setView(v,scroll=true){
 function renderView(){
   if(state.view==='ritmo') renderRitmo();
   if(state.view==='acompanar') renderAcc();
-  if(state.view==='solo'){suggestionText();drawBoard();renderLab();scrollBoardToPos();}
+  if(state.view==='solo'){suggestionText();drawBoard();renderLab();scrollBoardToPos();if(!state.playing)coachReset();}
   if(state.view==='crear'){renderPadTypes();renderKeys();renderPadDisplay();renderRec();drawPadBoard();}
   if(state.view==='curso') renderLesson();
   if(state.view==='oido') renderEar();
@@ -1411,6 +1518,8 @@ function renderAcc(){
     const tr=state.inst==='guitarra'&&n>1?`<span class="tr">${transShort(V[j],V[(j+1)%n])}</span>`:'';
     return `<div class="mapi${j===i?' on':''}">${dia}<span class="n">${cname(cj)}</span><span class="rn">${romanOf(cj)}</span>${tr}</div>`;}).join('');
   $('vinfo').textContent=VINFO[state.voicing];
+  const fo=state.voicing==='fluido'?fluidOptions():[], cur=Math.min(state.fluVar,fo.length-1);
+  $('fluVars').innerHTML=fo.map((o,k)=>`<button class="pbtn${k===cur?' on':''}" data-i="${k}"><b>Fluida ${k+1}${k===0?' · la más fácil':''}</b><small>${o.label}</small></button>`).join('');
   if(n>1){
     const lab={facil:'🟢 Fáciles',fluido:'🌊 Fluidas',cejilla:'Cejillas',clasico:'Clásicas'};
     $('vscore').innerHTML='Recorrido de la mano por vuelta:'+Object.keys(lab).map(m=>`<span class="${m===state.voicing?'on':''}">${lab[m]} ${handTravel(voicings(m))} trastes</span>`).join('');
@@ -1666,14 +1775,14 @@ function streak(){const S=new Set(PROG.days);let d=new Date(),n=0;if(!S.has(dayS
 
 /* ===================== CURSO: pantalla de inicio ===================== */
 const LS={lesson:null,speed:0,free:false,guide:true,pb:2,rounds:4,total:16,pats:[],lick:null,ending:false,snap:null,mission:null};
-const SNAP_KEYS=['key','mode','prog','custom','barsPer','style','bpm','scale','scaleRoot','pos','voicing','countIn'];
+const SNAP_KEYS=['key','mode','prog','custom','barsPer','style','bpm','scale','scaleRoot','pos','voicing','fluVar','countIn'];
 function restoreUser(){
   if(!LS.snap) return; Object.assign(state,LS.snap); LS.snap=null; state.curChord=null; lastCi=-1;
   fillSelects(); syncBpmUI(); setSeg('modeSeg','m',state.mode); setSeg('voiceSeg','v',state.voicing); $('voiceSel').value=state.voicing;
 }
 function goHome(){
   stopPlay(); if(state.view==='afinador') stopTuner(); restoreUser(); state.view='home';
-  document.body.dataset.screen='home'; document.body.classList.remove('theory'); $('homeBtn').textContent='v8 · curso';
+  document.body.dataset.screen='home'; document.body.classList.remove('theory'); $('homeBtn').textContent='v9 · curso';
   renderHome(); window.scrollTo({top:0});
 }
 function renderHome(){
@@ -1702,7 +1811,7 @@ function applyLesson(){
   state.key=pcOf(km[1]); state.mode=km[2]?'menor':'mayor';
   state.custom=L.ch.split(' ').map(parseCh); state.prog='custom'; state.barsPer=L.bars; state.style=L.style;
   if(!LS.free) state.bpm=L.bpm[LS.speed];
-  state.voicing=L.voice||'facil'; state.countIn=true; state.metro=false;
+  state.voicing=L.voice||'facil'; state.fluVar=0; state.countIn=true; state.metro=false;
   const b=L.kind==='lick'?[1,1,1]:state.inst==='bajo'?[1,1,0]:[1,0,1];
   state.drums=!!b[0]; state.chords=!!b[1]; state.bass=!!b[2];
   if(L.kind==='lick'){
@@ -2196,6 +2305,7 @@ function tick(time){
     Tone.Draw.schedule(()=>ritmoHead(slot),time);
   }
   if(LZ) lessonTick(s,bar,ch,ci,time,t);
+  if(state.view==='solo'&&s===0){const ph=bar%4;Tone.Draw.schedule(()=>coachUI(ph,ch),time);}
   if(state.view==='solo'&&state.lab!=='off'){
     const R=labShape(), per=R.res/4, on=R.res===16||s%2===0;
     if(on){
@@ -2302,6 +2412,12 @@ chk('bigChk','bigTog','big',renderLab);
 chk('rotChk','rotTog','rotate');
 $('randKey').onclick=()=>{let k;do{k=Math.floor(Math.random()*12);}while(k===state.key);state.key=k;$('keySel').value=k;$('padKeySel').value=k;onKeyOrMode();};
 ['Band','Click','Guide'].forEach(n=>$('vol'+n).oninput=e=>{state.vol[n.toLowerCase()]=+e.target.value;applyVolumes();});
+$('fluVars').addEventListener('click',e=>{const b=e.target.closest('.pbtn');if(!b)return;state.fluVar=+b.dataset.i;renderView();});
+$('playCamino').onclick=async()=>{
+  if(!(await ensureAudio())) return; const seq=caminoSeq(); if(!seq.length) return;
+  const all=seq.concat(seq.slice(0,-1).reverse()), d=Math.min(.32,60/state.bpm/2), now=Tone.now()+.05, bajo=state.inst==='bajo';
+  all.forEach((n,i)=>{(bajo?A.bass2:A.lead).triggerAttackRelease(hz(n.m),d*.9,now+i*d,.85);setTimeout(()=>flash(n.si+'-'+n.f),(.05+i*d)*1000);});
+};
 function setVoicing(v){state.voicing=v;setSeg('voiceSeg','v',v);$('voiceSel').value=v;renderView();}
 segBind('voiceSeg','v',setVoicing);
 $('voiceSel').onchange=e=>setVoicing(e.target.value);
